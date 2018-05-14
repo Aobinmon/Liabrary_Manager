@@ -69,8 +69,8 @@ void Book::modifyID(int id){
 	ID = id;
 }
 
-bool Book::operator== (Book& book){
-	if(book.getID() == this->ID) return true;
+bool Book::operator== (Book* book){
+	if(book->getID() == this->ID) return true;
 	else return false;
 }
 
@@ -127,27 +127,27 @@ int Guest::getbBook(){
 	return bBook;
 }
 
-void Guest::getBook(Book& book){
+void Guest::getBook(Book* book){
 	this->increaseBook();
-	string bookName = book.getBookName();
-	string writerName = book.getWriterName();
-	string press = book.getPress();
-	string pressTime = book.getPressTime();
-	string feature = book.getFeature();
-	if(book.getType() == "参考资料")
+	string bookName = book->getBookName();
+	string writerName = book->getWriterName();
+	string press = book->getPress();
+	string pressTime = book->getPressTime();
+	string feature = book->getFeature();
+	if(book->getType() == "参考资料")
 	Gbook[getbBook()] = new Reference(bookName, writerName, press, pressTime, feature);
-	book.PutoffShelf();
+	book->PutoffShelf();
 	ifstream fin("Book.txt");
 }
 
-void Guest::returnBook(Book& book){
+void Guest::returnBook(Book* book){
 	for(int i=0; i<getbBook(); ++i){
-		if(book == *Gbook[i]){
+		if(*book == Gbook[i]){
 			delete Gbook[i];
 		}
 	}
 	this->decreaseBook();
-	book.PutonShelf();
+	book->PutonShelf();
 }
 
 
@@ -156,37 +156,37 @@ void Guest::returnBook(Book& book){
 
 
 
-void Administrator::addBook(Book& book){
+void Administrator::addBook(Book* book){
 	ofstream fout("Book.txt", ios::app);
 	int counter=0;
-	fout << "  " << book.getID() << "  ||  ";
-	fout << "<<" << book.getBookName() << ">>";
-	counter += book.getBookName().length()+4;
+	fout << "  " << book->getID() << "  ||  ";
+	fout << "<<" << book->getBookName() << ">>";
+	counter += book->getBookName().length()+4;
 	for(; counter<20; ++counter) fout << " ";
-		fout << "||  " << book.getType();
-	fout << "(" << book.getFeature() << ")";
-	counter += book.getFeature().length() + 2 + book.getType().length();
+		fout << "||  " << book->getType();
+	fout << "(" << book->getFeature() << ")";
+	counter += book->getFeature().length() + 2 + book->getType().length();
 	for(; counter<40; ++counter) fout << " ";
-		fout << "||  " << book.getWriterName();
-	counter += book.getWriterName().length();
+		fout << "||  " << book->getWriterName();
+	counter += book->getWriterName().length();
 	for(; counter<50; ++counter) fout << " ";
-		fout << "||  " << book.getPress() << "(" << book.getPressTime() << ")";
-	counter += book.getPressTime().length() + 2 + book.getPress().length();
+		fout << "||  " << book->getPress() << "(" << book->getPressTime() << ")";
+	counter += book->getPressTime().length() + 2 + book->getPress().length();
 	for(; counter<75; ++counter) fout << " ";
 		fout << "||    ";
-	if(book.getOnshelf()) {
+	if(book->getOnshelf()) {
 		fout << "是    ||    ";
-		fout << book.getPosition() << endl;
+		fout << book->getPosition() << endl;
 	}
 	else fout << "否" << endl;
 	fout.close();
 }
 
-void Administrator::deleteBook(Book& book){
+void Administrator::deleteBook(Book* book){
 	ifstream fin("Book.txt");
 	string ltmp="";
 	string tmp="";
-	int aimID = book.getID();
+	int aimID = book->getID();
 	while(!fin.eof()){
 		getline(fin, ltmp);
 		int id=0;

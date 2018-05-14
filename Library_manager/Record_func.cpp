@@ -7,8 +7,11 @@
 #include <cmath>
 
 int Record::Num = 0;
+Record* rec[10000];
+
 
 using namespace std;
+
 string tostring(int n){                                  //转化为6位编号，不足6位则前导零
 	int i;
 	string str="";
@@ -24,6 +27,10 @@ int Record::getNum(){return Num;}
 
 void Record::increaseNum(){++Num;}
 
+Record::Record(Guest* _guest, Book* _book){
+	guest = _guest;
+	book = _book;
+}
 
 void find_Record_by_id(int id, int m){
 	ifstream fin("Record.txt");
@@ -53,9 +60,9 @@ void find_Record_by_id(int id, int m){
 
 
 
-void Administrator::approve(Record& record, Guest& guest, Book& book){
+void Administrator::approve(Record* record, Guest* guest, Book* book){
 	 ifstream fin("Record.txt");
-	 int aim_rid = record.getID();
+	 int aim_rid = record->getID();
 	 string tmp = "";
 	 string ltmp = "";
 	 string state="";
@@ -83,14 +90,14 @@ void Administrator::approve(Record& record, Guest& guest, Book& book){
 	 	}
 	 }
 	 if(state == "借阅") {
-	 	guest.getBook(book);
-	 	cout << guest.getName() << "已经成功借阅" << book.getBookName() << endl;
-	 	cout << guest.getName() << "已经借阅了" << guest.getbBook() << "本书，还可以借阅" << guest.MaxBook - guest.getbBook() << "本书" << endl;
+	 	guest->getBook(book);
+	 	cout << guest->getName() << "已经成功借阅" << book->getBookName() << endl;
+	 	cout << guest->getName() << "已经借阅了" << guest->getbBook() << "本书，还可以借阅" << guest->MaxBook - guest->getbBook() << "本书" << endl;
 	 }
 	 else if(state == "归还"){
-	 	guest.returnBook(book);
-	 	cout << guest.getName() << "已经成功归还" << book.getBookName() << endl;
-	 	cout << guest.getName() << "已经借阅了" << guest.getbBook() << "本书，还可以借阅" << guest.MaxBook - guest.getbBook() << "本书" << endl;
+	 	guest->returnBook(book);
+	 	cout << guest->getName() << "已经成功归还" << book->getBookName() << endl;
+	 	cout << guest->getName() << "已经借阅了" << guest->getbBook() << "本书，还可以借阅" << guest->MaxBook - guest->getbBook() << "本书" << endl;
 	 } 
 	 fin.close();
 	 ofstream fout("Record.txt");
@@ -99,9 +106,9 @@ void Administrator::approve(Record& record, Guest& guest, Book& book){
 
 }
 
-void Administrator::refuse(Record& record, int reason){
+void Administrator::refuse(Record* record, int reason){
 	ifstream fin("Record.txt");
-	int aim_rid = record.getID();
+	int aim_rid = record->getID();
 	string tmp = "";
 	string ltmp = "";
 	for(int i=-1; i<!fin.eof(); ++i){
@@ -209,15 +216,15 @@ void Administrator::find_Record_by_GuestID(int gid){
 
 
 
-void Guest::borrow(Book& book){                                       //提出借阅申请
+void Guest::borrow(Book* book){                                       //提出借阅申请
 	ofstream fout;
 	fout.open("Record.txt", ios::app);
 	int counter=0, num=0;
-	string rID = tostring(book.getID());
+	string rID = tostring(book->getID());
 	int gID = this->getID();
-	int bID = book.getID();
+	int bID = book->getID();
 	string gName = this->getName();
-	string bName = book.getBookName();
+	string bName = book->getBookName();
 	fout << "   " << rID << '\t' << " || \t"
 	<< "借阅" << '\t' << "  " << " || \t";
 	fout << gName;
@@ -233,18 +240,19 @@ void Guest::borrow(Book& book){                                       //提出�
 	fout << " ||  " << bID;
 	fout << " ||      " << "等待审核" << '\n';
 	fout.close();
+	rec[Record::Num] = new Record(this, book);
 	Record::increaseNum();
 }
 
-void Guest::Return(Book& book){                                     //提出归还申请
+void Guest::Return(Book* book){                                     //提出归还申请
 	ofstream fout;
 	fout.open("Record.txt", ios::app);
 	int counter=0, num=0;
-	string rID = tostring(book.getID());
+	string rID = tostring(book->getID());
 	int gID = this->getID();
-	int bID = book.getID();
+	int bID = book->getID();
 	string gName = this->getName();
-	string bName = book.getBookName();
+	string bName = book->getBookName();
 	fout << "   " << rID << '\t' << " || \t"
 	<< "借阅" << '\t' << "  " << " || \t";
 	fout << gName;
@@ -260,6 +268,7 @@ void Guest::Return(Book& book){                                     //提出归�
 	fout << " ||  " << bID;
 	fout << " ||      " << "等待审核" << '\n';
 	fout.close();
+	rec[Record::Num] = new Record(this, book);
 	Record::increaseNum();
 }
 

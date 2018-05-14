@@ -5,12 +5,13 @@
 #include "Book.h"
 #include "Administrator.h"
 class Record{
-	static int Num;
 	int ID{Num};
 	std::string time;
-	Guest& guest;
-	Book& book;
+	Guest* guest;
+	Book* book;
 public:
+	static int Num;
+	Record(Guest* _guest, Book* _book);
 	int getID();
 	std::string getTime();
 	Guest& getGuest();

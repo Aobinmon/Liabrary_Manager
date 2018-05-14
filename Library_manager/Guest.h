@@ -16,11 +16,11 @@ public:
 	void set_password(std::string pw);
 	void increaseBook();
 	void decreaseBook();
-	void borrow(Book& book);
-	void Return(Book& book);
-	void getBook(Book& book);
+	void borrow(Book* book);
+	void Return(Book* book);
+	void getBook(Book* book);
 	int getbBook();
-	void returnBook(Book& book);
+	void returnBook(Book* book);
 };
 
 #endif

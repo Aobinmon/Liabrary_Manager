@@ -21,7 +21,7 @@ public:
 	std::string getPosition();
 	std::string getSummary();
 	std::string getBookName();
-	bool operator== (Book& book);
+	bool operator== (Book* book);
 	void PutonShelf();
 	void PutoffShelf();
 	void modifyID(int id);

@@ -84,13 +84,13 @@ void Administrator::approve(Record& record, Guest& guest, Book& book){
 	 }
 	 if(state == "借阅") {
 	 	guest.getBook(book);
-	 	cout << guest.getName() << "已经成功借阅" << book.getName() << endl;
-	 	cout << guest.getName() << "已经借阅了" << guest.getbBook() << "本书，还可以借阅" << guest.Maxbook - guest.getbBook() << "本书" << endl;
+	 	cout << guest.getName() << "已经成功借阅" << book.getBookName() << endl;
+	 	cout << guest.getName() << "已经借阅了" << guest.getbBook() << "本书，还可以借阅" << guest.MaxBook - guest.getbBook() << "本书" << endl;
 	 }
 	 else if(state == "归还"){
 	 	guest.returnBook(book);
-	 	cout << guest.getName() << "已经成功归还" << book.getName() << endl;
-	 	cout << guest.getName() << "已经借阅了" << guest.getbBook() << "本书，还可以借阅" << guest.Maxbook - guest.getbBook() << "本书" << endl;
+	 	cout << guest.getName() << "已经成功归还" << book.getBookName() << endl;
+	 	cout << guest.getName() << "已经借阅了" << guest.getbBook() << "本书，还可以借阅" << guest.MaxBook - guest.getbBook() << "本书" << endl;
 	 } 
 	 fin.close();
 	 ofstream fout("Record.txt");

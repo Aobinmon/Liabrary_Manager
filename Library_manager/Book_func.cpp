@@ -74,12 +74,58 @@ bool Book::operator== (Book* book){
 	else return false;
 }
 
-void Book::PutonShelf(){
+void Book::PutonShelf(string position){
 	this->Onshelf = true;
+	ifstream fin("Book.txt");
+	string ltmp= "";
+	string tmp;
+	for(; !fin.eof();){
+		getline(fin, ltmp);
+		int id=0;
+		for(int i=3; i<=8; ++i) id = id*10+ltmp[i]-'0';
+		if(id == this->getID()){
+			int counter=0;
+			for(int i=0; i<ltmp.length()&&counter<10; ++i){
+				tmp += ltmp[i];
+				if(ltmp[i]=='|') ++counter;
+			}
+			tmp += "    是    ||    " + position + '\n';
+		}
+		else{
+			tmp += ltmp + '\n';
+		}
+	}
+	ofstream fout("Book.txt");
+	fout << tmp;
+	fin.close();
+	fout.close();
 }
 
 void Book::PutoffShelf(){
 	this->Onshelf = false;
+	ifstream fin("Book.txt");
+	string ltmp= "";
+	string tmp;
+	for(; !fin.eof();){
+		getline(fin, ltmp);
+		int id=0;
+		for(int i=3; i<=8; ++i) id = id*10+ltmp[i]-'0';
+		if(id == this->getID()){
+			int counter=0;
+			for(int i=0; i<ltmp.length()&&counter<10; ++i){
+				tmp += ltmp[i];
+				if(ltmp[i]=='|') ++counter;
+			}
+			tmp += "    否" + '\n';
+		}
+		else{
+			tmp += ltmp + '\n';
+		}
+	}
+	ofstream fout("Book.txt");
+	fout << tmp;
+	fin.close();
+	fout.close();
 }
 
 string Book::getBookName(){
@@ -137,7 +183,6 @@ void Guest::getBook(Book* book){
 	if(book->getType() == "参考资料")
 	Gbook[getbBook()] = new Reference(bookName, writerName, press, pressTime, feature);
 	book->PutoffShelf();
-	ifstream fin("Book.txt");
 }
 
 void Guest::returnBook(Book* book){
@@ -147,7 +192,7 @@ void Guest::returnBook(Book* book){
 		}
 	}
 	this->decreaseBook();
-	book->PutonShelf();
+	book->PutonShelf(book->getPosition());
 }
 
 

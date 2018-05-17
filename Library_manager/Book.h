@@ -2,6 +2,7 @@
 #define BOOK_H
 #include "Administrator.h"
 #include <string>
+#include <map>
 class Book{
 	std::string BookName;
 	int ID;                                                      //6位，前两位代表类型，中间两位代表特点，最后两位代表编号
@@ -14,6 +15,7 @@ class Book{
 	std::string Type;                          //类型
 public:
 	Book(std::string BookName, std::string WriterName, std::string Press, std::string PressTime);
+	static std::map<std::string, int> FEA;
 	int getID();
 	std::string getWriterName();
 	std::string getPress();

@@ -2,8 +2,8 @@ CC = g++
 CFLAGS = -std=c++11 -g
 UH = Administrator.h Guest.h
 RH = Record.h
-BH = Book.h Reference.h
-FC = Record_func.o Record_func.o Password_func.o
+BH = Book.h Reference.h Novel.h TextBook.h Dictionary.h 
+FC = Record_func.o Book_func.o Password_func.o Novel.o TextBook.h Dictionary.o 
 
 .PHONY : clean
 

@@ -103,7 +103,6 @@ void Administrator::approve(Record* record, Guest* guest, Book* book){
 	 ofstream fout("Record.txt");
 	 fout << tmp << "\n";
 	 fout.close();
-
 }
 
 void Administrator::refuse(Record* record, int reason){

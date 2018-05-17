@@ -13,6 +13,12 @@ public:
 	std::string getName();
 	void modify_password(std::string pw);
 	virtual void set_password(std::string pw) = 0;
+	
+
+	void find_book_by_ID(int id);
+	void find_book_by_BookName(std::string bookName);
+	void find_book_by_WriterName(std::string writerName);
+	void find_book_by_feature(std::string feature);
 };
 
 #endif

@@ -1,23 +1,26 @@
-#ifndef RECORD_H
-#define RECORD_H
+//
+// Created by wujiayi on 2018/5/8.
+//
+
+#ifndef LIBRAR_RECORD_H
+#define LIBRAR_RECORD_H
+
 #include <string>
 #include "Guest.h"
 #include "Book.h"
+#include "vector"
+#include <Mysql.h>
 #include "Administrator.h"
-class Record{
-	int ID{Num};
-	std::string time;
-	Guest* guest;
-	Book* book;
+
+class Record {
+    int ID;
+    std::string time;
+    GuestMysql gm;
+    RecordMysql rm;
+    BookMysql bm;
 public:
-	static int Num;
-	Record(Guest* _guest, Book* _book);
-	int getID();
-	std::string getTime();
-	Guest& getGuest();
-	Book& getBook();
-	static int getNum();
-	static void increaseNum();
+    Record(Guest* _guest, Book* _book);
 };
 
-#endif
+
+#endif //LIBRAR_RECORD_H

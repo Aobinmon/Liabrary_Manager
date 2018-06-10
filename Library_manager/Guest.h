@@ -1,26 +1,35 @@
-#ifndef GUEST_H
-#define GUEST_H
+//
+// Created by wujiayi on 2018/5/8.
+//
+
+#ifndef LIBRAR_GUEST_H
+#define LIBRAR_GUEST_H
+
 #include "User.h"
 #include "Book.h"
+#include <string>
+#include <vector>
 #include "Administrator.h"
+#include <Mysql.h>
 
 class Guest : public User{
-	bool In_use;
 	int bBook{0};
+    BookMysql bm;
+    GuestMysql gm;
+    RecordMysql rm;
+    To-doMysql tm;
 public:
-	static const int MaxBook{5};
-	static int Num;
-	Book* Gbook[5];
-	friend class Administrator;
-	Guest():bBook(0){}
-	void set_password(std::string pw);
-	void increaseBook();
-	void decreaseBook();
-	void borrow(Book* book);
-	void Return(Book* book);
-	void getBook(Book* book);
-	int getbBook();
-	void returnBook(Book* book);
+    Guest(std::string name, std::string password);//直接在创建时设置bBook = 0
+    friend class Administrator;
+    void Applyforbook(Book* book);//申请借书
+    void ApplyreturnBook(Book* book);//申请还书
+    void collection(Book* book);//收藏书
+    std::vector<Book*> findbook(std::string type, std::string value);
+    ~Guest();//暂时没写
 };
 
-#endif
+
+
+
+
+#endif //LIBRAR_GUEST_H

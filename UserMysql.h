@@ -1,15 +1,19 @@
-#ifndef USERMYSQL_H
-#define USERMYSQL_H
-#include "Mysql.h"
-#include <vector>
-#include <QString>
+//
+// Created by wujiayi on 2018/5/8.
+//
 
-class UserMysql : public Mysql{
+#ifndef LIBRAR_USER_H
+#define LIBRAR_USER_H
+#include <string>
+#include <map>
+
+class User {
+    int ID;
+    std::string Password;
+    std::string Name;
 public:
-    virtual bool existUsername(QString username) = 0;
-    virtual QString getPassword(QString username) = 0;
-    virtual ~UserMysql(){}
-    virtual void modifyPassword(QString password) = 0;
+    virtual ~User();
 };
 
-#endif // USERMYSQL_H
+
+#endif //LIBRAR_USER_H

@@ -1,12 +1,26 @@
-#ifndef RECORDMYSQL_H
-#define RECORDMYSQL_H
-#include "Mysql.h"
-#include "Record.h"
-#include <vector>
-#include <QString>
-class RecordMysql : public Mysql{
+//
+// Created by wujiayi on 2018/5/8.
+//
+
+#ifndef LIBRAR_RECORD_H
+#define LIBRAR_RECORD_H
+
+#include <string>
+#include "Guest.h"
+#include "Book.h"
+#include "vector"
+#include <Mysql.h>
+#include "Administrator.h"
+
+class Record {
+    int ID;
+    std::string time;
+    GuestMysql gm;
+    RecordMysql rm;
+    BookMysql bm;
 public:
-    std::vector<Record*> findRecord(QString Usertype, QString infotype, QString info);
+    Record(Guest* _guest, Book* _book);
 };
 
-#endif // RECORDMYSQL_H
+
+#endif //LIBRAR_RECORD_H

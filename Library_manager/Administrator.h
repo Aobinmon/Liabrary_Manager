@@ -24,7 +24,7 @@ class Administrator : public User{
 public:
 
     void approve(Record* record);//在库数减一
-    void refuse(Record* record, int reason);                                // reason: 1--借书数目超过上限， 2---权限不够借阅该类书籍， 3---未知错误（管理员心情不好.......sorry, 身为管理员就是可以为所欲为
+    void refuse(Record* record);                                // reason: 1--借书数目超过上限， 2---权限不够借阅该类书籍， 3---未知错误（管理员心情不好.......sorry, 身为管理员就是可以为所欲为
     std::vector<Record*> find_record(std::string type, std::string value); //type包括时间，序号，书名
     std::vector<Guest*> find_guest(std::string type, std::string value);  //type包括用户名，ID
     void addBook(Book* book);//书库中加书

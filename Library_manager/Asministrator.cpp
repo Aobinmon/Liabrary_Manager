@@ -5,15 +5,21 @@
 #include "Administrator.h"
 #include <QString>
 
-void Administrator::approve(Record *record) {
-    rm.add_record(QString::fromStdString(record));
-    tm.deleter_ecord(record(QString::fromStdString(record)));
-    return;
+bool Administrator::approve(Record *record) {
+    if (tm.find_record(QString::fromStdString(record))){
+        rm.add_record(QString::fromStdString(record));
+        tm.deleter_ecord(record(QString::fromStdString(record)));
+        return true;
+    }
+    else return false;
 }
 
-void Administrator::refuse(Record *record) {
-    tm.delete_record(record(QString::fromStdString(record)));
-    return;
+bool Administrator::refuse(Record *record, int reason) {
+    if (tm.find_record(QString::fromStdString(record)){
+        tm.delete_record(record(QString::fromStdString(record)));
+        return true;
+    }
+    else return false;
 }
 
 void Administrator::addBook(Book *book) {
@@ -34,8 +40,11 @@ std::vector<Record*> Administrator::find_record(std::string type, std::string va
     return rm.find_record(QString::fromStdString(type),QString::fromStdString(value));
 }
 
-void Administrator::returnBook(Record *record) {
-    rm.add_record(QString::fromStdString(record));
-    tm.delete_record(record(QString::fromStdString(record)));
-    return;
+bool Administrator::returnBook(Record *record) {
+    if(tm.find_record(QString::fromStdString(record))){
+        rm.add_record(QString::fromStdString(record));
+        tm.delete_record(record(QString::fromStdString(record)));
+        return true;
+    }
+    else return false;
 }

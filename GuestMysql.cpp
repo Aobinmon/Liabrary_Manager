@@ -64,7 +64,7 @@ vector<Guest*> GuestMysql::find_guest(Qstring type,Qstring feature){
         QString string0=feature.mid(0,len0);
         QString string1=feature.mid(len0,2*len0);
         QString string2=feature.mid(2*len0);
-        query.exec("select * from Guest where "+type+"like %\""+string0+"\"% or "+type+ " like %\""
+        query.exec("select * from Guest where "+type+" like %\""+string0+"\"% or "+type+" like %\""
                    +string1+"\"% or "+type+" like %\""+string2+"\"%");
         while(query.next()){
         int id=query.value(0).toInt();

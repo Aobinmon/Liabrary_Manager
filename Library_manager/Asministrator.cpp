@@ -11,7 +11,7 @@ void Administrator::approve(Record *record) {
     return;
 }
 
-void Administrator::refuse(Record *record, int reason) {
+void Administrator::refuse(Record *record) {
     tm.delete_record(record(QString::fromStdString(record)));
     return;
 }

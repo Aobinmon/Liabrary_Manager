@@ -18,7 +18,7 @@ void BookMysql::insertBook(Book *book){
     Qstring summary=book->getSummary();
     QSqlQuery query;
     query.exec("INSERT INTO Books(ID,Bookname,Writername,Press,Presstime,Type,Position,Onshelf,Summary)"
-               "VALUES("+id+bookname+writername+press+presstime+type+position+onshelf+summary+")");
+               "VALUES("+id+","+bookname+","+writername+","+press+","+presstime+","+type+","+position+","+onshelf+","+summary+")");
 }
 
 bool BookMysql::dropBook(Book *book){

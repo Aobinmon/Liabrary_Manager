@@ -1,8 +1,4 @@
 #include"recordmysql.h"
-#include<QString>
-#include<vector>
-#include"Record.h"
-using namespace std;
 std::vector<Record*> RecordMysql::findRecord( QString usertype,QString infotype, QString info,QString userID)//如果是管理员的话，userID就设为-1
 {
          bool found=false;

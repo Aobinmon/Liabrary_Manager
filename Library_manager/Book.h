@@ -20,6 +20,7 @@ class Book {
     std::string Type;                          //类型
 public:
     Book(std::string BookName, std::string WriterName, std::string Press, std::string PressTime);
+    Book(int _id, std::string _type);
 };
 
 

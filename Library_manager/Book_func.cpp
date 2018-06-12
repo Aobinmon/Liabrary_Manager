@@ -16,3 +16,8 @@ Book::Book(string bookName, string writerName, string press, string pressTime){
     Press = press;
     PressTime = pressTime;
 }
+
+Book::Book(int _id, std::string _type) {
+    ID = _id;
+    Type = _type;
+}

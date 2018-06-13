@@ -8,7 +8,7 @@
 bool Administrator::approve(Record *record) {
     if (tm.find_record(QString::fromStdString(record))){
         rm.add_record(QString::fromStdString(record));
-        tm.deleter_ecord(record(QString::fromStdString(record)));
+        tm.delete_record(record(QString::fromStdString(record)));
         return true;
     }
     else return false;

@@ -13,18 +13,14 @@
 #include <vector>
 #include "Mysql.h"
 class Administrator : public User{
-    int ID;
     GusetMysql gm;
     AdministratorMysql am;
     RecordMysql rm;
     BookMysql bm;
     To_doMysql tm;
-    std::string username;
-    std::string password;
 public:
-
-    bool approve(Record* record);//在库数减一
-    bool refuse(Record* record, int reason);                                // reason: 1--借书数目超过上限， 2---权限不够借阅该类书籍， 3---未知错误（管理员心情不好.......sorry, 身为管理员就是可以为所欲为
+    Administrator(int id, std::string _username, std::string _password);
+    bool approve_or_refuse(Record* record,int approve);
     std::vector<Record*> find_record(std::string type, std::string value); //type包括时间，序号，书名
     std::vector<Guest*> find_guest(std::string type, std::string value);  //type包括用户名，ID
     void addBook(Book* book);//书库中加书

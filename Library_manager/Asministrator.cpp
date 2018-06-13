@@ -12,16 +12,16 @@ Administrator::Administrator(int id, std::string _username, std::string _passwor
 }
 
 bool Administrator::approve_or_refuse(Record *record, int approve) {
-    return tm.approve_or_refuse(QString ::fromStdString(record),approve);
+    return tm.approve_or_refuse(QString ::fromStdString(record),QString::number(approve));
 }
 
 void Administrator::addBook(Book *book) {
-    bm.add_book(QString::fromStdString(book));
+    bm.add_book(QString::fromStdString(book->getBookName()));
     return;
 }
 
 void Administrator::deleteBook(Book *book) {
-    bm.delete_book(QString::fromStdString(book));
+    bm.delete_book(QString::fromStdString(book->getBookName()));
     return;
 }
 
@@ -34,9 +34,9 @@ std::vector<Record*> Administrator::find_record(std::string type, std::string va
 }
 
 bool Administrator::returnBook(Record *record) {
-    if(tm.find_record(QString::fromStdString(record))){
-        rm.add_record(QString::fromStdString(record));
-        tm.delete_record(record(QString::fromStdString(record)));
+    if(tm.find_record(QString::number(record->getID()))){
+        rm.add_record(QString::number(record->getID()));
+        tm.delete_record(record(QString::number(record->getID())));
         return true;
     }
     else return false;

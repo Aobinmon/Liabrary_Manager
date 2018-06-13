@@ -12,7 +12,10 @@ class User {
     std::string Password;
     std::string Name;
 public:
-    virtual ~User();
+    void modifyid(int id);
+    void modifypassword(std::string _password);
+    void modifyname(std::string _name);
+    virtual User() = 0;
 };
 
 

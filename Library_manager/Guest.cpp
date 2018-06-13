@@ -15,24 +15,24 @@ std::vector<Book*> Guest::findbook(std::string type, std::string value) {//type�
 }
 
 void Guest::collection(Book *book) {
-    //查找书名的函数
-    gm.collection(QString::fromStdString(书名));
+    gm.collection(QString::fromStdString( book->getBookName()));
     return;
 }
 
-void Guest::Guest(std::string name, std::string password) {
-    gm.addguest(QString::fromStdString(name),QString::fromStdString(password));//bBook = 0
-    return;
+Guest::Guest(int id, std::string _name, std::string _password) {
+    modifyid(id);
+    modifyname(_name);
+    modifypassword(_password);
 }
+
+
 
 void Guest::Applyforbook(Book *book) {
-    //查找书名的函数
-    tm.addApplyforbook(QString::fromStdstring(书名));
+    tm.addApplyforbook(QString::fromStdstring( book->getBookName()));
     return;
 }
 
 void Guest::ApplyreturnBook(Book *book) {
-    //查找书名的函数
-    tm.addApplyreturnBook(QString::fromStdstring(书名));
+    tm.addApplyreturnBook(QString::fromStdstring( book->getBookName()));
     return;
 }

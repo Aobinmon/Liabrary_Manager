@@ -5,21 +5,14 @@
 #include "Administrator.h"
 #include <QString>
 
-bool Administrator::approve(Record *record) {
-    if (tm.find_record(QString::fromStdString(record))){
-        rm.add_record(QString::fromStdString(record));
-        tm.delete_record(record(QString::fromStdString(record)));
-        return true;
-    }
-    else return false;
+Administrator::Administrator(int id, std::string _username, std::string _password) {
+    modifypassword(_password);
+    modifyname(_username);
+    modifyid(id);
 }
 
-bool Administrator::refuse(Record *record, int reason) {
-    if (tm.find_record(QString::fromStdString(record)){
-        tm.delete_record(record(QString::fromStdString(record)));
-        return true;
-    }
-    else return false;
+bool Administrator::approve_or_refuse(Record *record, int approve) {
+    return tm.approve_or_refuse(QString ::fromStdString(record),approve);
 }
 
 void Administrator::addBook(Book *book) {

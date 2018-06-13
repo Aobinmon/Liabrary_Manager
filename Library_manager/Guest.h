@@ -19,8 +19,9 @@ class Guest : public User{
     RecordMysql rm;
     To-doMysql tm;
 public:
-    Guest(std::string name, std::string password);//直接在创建时设置bBook = 0
+    Guest(int id, std::string name, std::string password);//直接在创建时设置bBook = 0
     friend class Administrator;
+    int get_Id();
     void Applyforbook(Book* book);//申请借书
     void ApplyreturnBook(Book* book);//申请还书
     void collection(Book* book);//收藏书

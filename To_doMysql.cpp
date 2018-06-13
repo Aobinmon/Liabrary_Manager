@@ -12,24 +12,22 @@ std::vector<Record*> To_doMysql::got_all()
         std::string type=query.value(3).toString();
         std::string time=query.value(4).toString();
         //用guestid查找对应的guest
-        QSqlQuery query1;
-        query1.exec("select * from Guest where ID="+guestid);
-        std::string id1=query1.value(0).toString();
-        std::string username=query1.value(1).toString();
-        std::string password=query1.value(2).toString();
+        query.exec("select * from Guest where ID="+guestid);
+        std::string id1=query.value(0).toString();
+        std::string username=query.value(1).toString();
+        std::string password=query.value(2).toString();
         Guest* guest=new Guest(id1,username,password);
         //用bookid查找对应的book
-        QSqlQuery query2;
-        query2.exec("select * from Book where ID="+bookid);
-        int id2=query2.value(0).toInt();
-        std::string bookname=query2.value(1).toString();
-        std::string writername=query2.value(2).toString();
-        std::string press=query2.value(3).toString();
-        std::string presstime=query2.value(4).toString();
-        std::string type=query2.value(5).toString();
-        std::string position=query2.value(6).toString();
-        int onshelf=query2.value(7).toInt();
-        std::string summary=query2.value(8).toString();
+        query.exec("select * from Book where ID="+bookid);
+        int id2=query.value(0).toInt();
+        std::string bookname=query.value(1).toString();
+        std::string writername=query.value(2).toString();
+        std::string press=query.value(3).toString();
+        std::string presstime=query.value(4).toString();
+        std::string type=query.value(5).toString();
+        std::string position=query.value(6).toString();
+        int onshelf=query.value(7).toInt();
+        std::string summary=query.value(8).toString();
         Book* book=new Book(id2,bookname,writername,press,presstime,type,position,onshelf,summary);
         Record* record=new(guest,book,id,time,type);//第id号借阅、借阅时间time、借阅类型type
         recordlist.push_back(record);

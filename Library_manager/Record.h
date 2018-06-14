@@ -15,15 +15,16 @@
 class Record {
     int ID;
     std::string time;
-    Guest* _guest;
-    Book * _book;
-    std::string type;
-    std::string result;
-    GuestMysql gm;
-    RecordMysql rm;
-    BookMysql bm;
+    Guest* guest;
+    Book * book;
+    std::string type;//借阅还是归还
+    int result;
+    int state;
+    connect GuestMysql* gm;
+    connect RecordMysql* rm;
+    connect BookMysql* bm;
 public:
-    Record(int _ID, Guest* _guest, Book* _book, std::string _type, std::string _result, std::string _time);
+    Record(Guest* _guest, Book* _book, int _ID, std::string _time, std::string _type, int _result, int _state);
     int getID();
     std::string gettime();
     Guest* getguest();

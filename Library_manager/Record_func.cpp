@@ -11,14 +11,14 @@
 #include<QString>
 
 using namespace std;
-
-Record::Record(int _ID, Guest *guest, Book *book, std::string _type, std::string _result, std::string _time) {
+Record::Record(Guest *_guest, Book *_book, int _ID, std::string _time, std::string _type, int _result, int _state) {
     ID = _ID;
-    _book = book;
-    _guest = guest;
+    book = _book;
+    guest = _guest;
     type = _type;
     result = _result;
     time = _time;
+    state = _state;
 }
 
 int Record::getID() {

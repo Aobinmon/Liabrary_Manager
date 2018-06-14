@@ -20,6 +20,7 @@ class Guest : public User{
     To-doMysql tm;
 public:
     Guest(int id, std::string name, std::string password);//直接在创建时设置bBook = 0
+	Guest(int id, std::string name, std::string password,int _bbook);s
     friend class Administrator;
     int get_Id();
     void Applyforbook(Book* book);//申请借书

@@ -1,4 +1,4 @@
-#include "To_domysql.h"
+ #include "To_domysql.h"
 #include<vector>
 std::vector<Record*> To_doMysql::got_all()
 {
@@ -29,7 +29,7 @@ std::vector<Record*> To_doMysql::got_all()
         int onshelf=query.value(7).toInt();
         std::string summary=query.value(8).toString();
         Book* book=new Book(id2,bookname,writername,press,presstime,type,position,onshelf,summary);
-        Record* record=new(guest,book,id,time,type);//第id号借阅、借阅时间time、借阅类型type
+        Record* record=new Record(guest,book,id,time,type);//第id号借阅、借阅时间time、借阅类型type
         recordlist.push_back(record);
     } 
     return recordlist;

@@ -49,7 +49,7 @@ std::vector<Record*> RecordMysql::find_in_waiting_record( QString usertype,QStri
              int bookid=query.value(1).toInt();
              int guestid=query.value(2).toInt();
              int type=query.value(3).toInt();
-             std::string time=query.value(4).toString();
+             std::string Time=query.value(4).toString();
             //用guestid查找对应的guest
              QSqlQuery query1;
              query1.exec("select * from Guest where ID="+guestid);
@@ -95,8 +95,7 @@ std::vector<Record*> RecordMysql::find_in_waiting_record( QString usertype,QStri
                   query.exec("select * from done_record where "+infotype+" like %\""+string0+"\"% or "+infotype+" like %\""
                          +string1+"\"% or "+infotype+" like %\""+string2+"\"%");
              else
-                  query.exec("select * from done_record where "+infotype+" like %"+string0+"% or "+infotype+" like %"
-                          +string1+"% or "+infotype+" like %"+string2+"%");
+                  query.exec("select * from done_record where "+infotype+" like %"+string0+"% or "+infotype+" like %"                          +string1+"% or "+infotype+" like %"+string2+"%");
               }      
            }
         else if(usertype=="guest"){//用户的查询，只能看到guestID=userID的借阅信息
@@ -125,7 +124,7 @@ std::vector<Record*> RecordMysql::find_in_waiting_record( QString usertype,QStri
              int bookid=query.value(1).toInt();
              int guestid=query.value(2).toInt();
              int type=query.value(3).toInt();
-             std::string time=query.value(4).toString();
+             std::string Time=query.value(4).toString();
              int result=query.value(5).toInt();
             //用guestid查找对应的guest
              QSqlQuery query1;

@@ -12,10 +12,10 @@
 
 using namespace std;
 
-Record::Record(int _ID, int _book_id, int _guest_id, std::string _type, std::string _result, std::string _time) {
+Record::Record(int _ID, Guest *guest, Book *book, std::string _type, std::string _result, std::string _time) {
     ID = _ID;
-    book_id = _book_id;
-    guest_id = _guest_id;
+    _book = book;
+    _guest = guest;
     type = _type;
     result = _result;
     time = _time;

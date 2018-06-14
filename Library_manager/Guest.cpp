@@ -25,14 +25,19 @@ Guest::Guest(int id, std::string _name, std::string _password) {
     modifypassword(_password);
 }
 
-
+Guest::Guest(int id, std::string name, std::string password, int _bbook) {
+    modifyid(id);
+    modifyname(name);
+    modifypassword(password);
+    bBook = _bbook;
+}
 
 void Guest::Applyforbook(Book *book) {
-    tm.addApplyforbook(QString::fromStdstring( book->getBookName()));
+    tm.addApplyforbook(QString::fromStdstring( book->getID()));
     return;
 }
 
 void Guest::ApplyreturnBook(Book *book) {
-    tm.addApplyreturnBook(QString::fromStdstring( book->getBookName()));
+    tm.addApplyreturnBook(QString::fromStdstring( book->getID()));
     return;
 }
